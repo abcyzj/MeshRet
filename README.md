@@ -1,5 +1,5 @@
 # MeshRet
-Official implementation for the NeurIPS 2024 paper **"Skinned Motion Retargeting with Dense Geometric Interaction Perception"**.
+Official implementation for the NeurIPS 2024 spotlight paper **"Skinned Motion Retargeting with Dense Geometric Interaction Perception"**.
 
 [Project Page](https://abcyzj.github.io/MeshRet/)
 
