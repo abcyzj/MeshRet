@@ -1,0 +1,15 @@
+open3d-python==0.3.0.0
+pyvista==0.44.2
+pytorch-lightning==2.2.1
+torch==2.2.0
+tqdm==4.66.1
+trimesh==4.1.3
+smplx==0.1.28
+fvcore==0.1.5.post20221221
+pysdf==0.1.9
+embreex==2.17.7.post4
+numpy==1.26.3
+torchvision==0.17.0
+jsonargparse[signatures]==4.27.6
+tensorboard==2.16.2
+imageio[ffmpeg]==2.36.1

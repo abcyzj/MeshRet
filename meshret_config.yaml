@@ -1,0 +1,155 @@
+# pytorch_lightning==2.2.1
+seed_everything: 9923
+trainer:
+  accelerator: gpu
+  strategy: auto
+  devices:
+  - 0
+  num_nodes: 1
+  precision: null
+  logger: true
+  callbacks:
+  - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+    init_args:
+      dirpath: null
+      filename: null
+      monitor: null
+      verbose: false
+      save_last: null
+      save_top_k: -1
+      save_weights_only: false
+      mode: min
+      auto_insert_metric_name: true
+      every_n_train_steps: null
+      train_time_interval: null
+      every_n_epochs: 1
+      save_on_train_epoch_end: null
+      enable_version_counter: true
+  fast_dev_run: false
+  max_epochs: null
+  min_epochs: null
+  max_steps: 400000
+  min_steps: null
+  max_time: null
+  limit_train_batches: null
+  limit_val_batches: null
+  limit_test_batches: null
+  limit_predict_batches: null
+  overfit_batches: 0.0
+  val_check_interval: null
+  check_val_every_n_epoch: 1
+  num_sanity_val_steps: null
+  log_every_n_steps: null
+  enable_checkpointing: true
+  enable_progress_bar: true
+  enable_model_summary: null
+  accumulate_grad_batches: 1
+  gradient_clip_val: null
+  gradient_clip_algorithm: null
+  deterministic: null
+  benchmark: null
+  inference_mode: true
+  use_distributed_sampler: true
+  profiler: null
+  detect_anomaly: false
+  barebones: false
+  plugins: null
+  sync_batchnorm: false
+  reload_dataloaders_every_n_epochs: 0
+  default_root_dir: artifact/mixamo_all_ret
+model:
+  njoints: 25
+  nfeats: 6
+  latent_dim: 256
+  ff_size: 1024
+  num_layers: 8
+  num_heads: 4
+  dropout: 0.1
+  activation: gelu
+  data_rep: rot6d
+  arch: trans_enc_dec
+  num_ring_per_bone: 4
+  num_point_per_ring: 4
+  sensor_grp_emb_dim: 8
+  num_sensor_grp: 16
+  cond_mode: tns
+  num_sensor_max: 20
+  lambda_dir: 5.0
+  lambda_efv: 1.0
+  lambda_spine: 200.0
+  lambda_gan: 1.0
+  lambda_pair_softmin: 100.0
+  lambda_group_softmin: 10.0
+  lambda_weighted_dir: 0.0
+  lambda_contact: 0.0
+  lambda_ef_pose_global: 5.0
+  lambda_dm: 0.0
+  group_pairs:
+  - - - - LeftArm_1
+        - LeftArm_2
+        - LeftArm_3
+      - - Head
+  - - - - RightArm_1
+        - RightArm_2
+        - RightArm_3
+      - - Head
+  - - - - LeftArm_2
+        - LeftArm_3
+      - - RightArm
+    - - - LeftArm_2
+        - LeftArm_3
+      - - Torso
+  - - - - RightArm_2
+        - RightArm_3
+      - - LeftArm
+    - - - RightArm_2
+        - RightArm_3
+      - - Torso
+  - - - - LeftLeg_1
+      - - RightLeg
+    - - - LeftLeg_1
+      - - Torso
+  - - - - RightLeg_1
+      - - LeftLeg
+    - - - RightLeg_1
+      - - Torso
+  end_effectors:
+  - LeftArm_3
+  - RightArm_3
+  - LeftLeg_1
+  - RightLeg_1
+  - Head_1
+  dis_margin: 0.3
+  update_dis_every_n_step: 4
+  limb_bound:
+  - 0.0
+  - 50.0
+  far_cos_bound: 0.75
+  only_body: true
+data:
+  data_dir:
+  - artifact/datasets/mixamo_all
+  - artifact/datasets/scanret
+  batch_size: 64
+  seq_len: 30
+  sample_stride: 10
+  split: sc+sm
+  pose_rep: rot6d
+  num_workers: 16
+  only_contact: false
+ckpt_path: null
+optim:
+  class_path: torch.optim.Adam
+  init_args:
+    lr: 0.0001
+    betas:
+    - 0.9
+    - 0.999
+    eps: 1.0e-08
+    weight_decay: 0.0
+    amsgrad: false
+    foreach: null
+    maximize: false
+    capturable: false
+    differentiable: false
+    fused: false
